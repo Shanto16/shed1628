@@ -25,7 +25,9 @@ import io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText;
 
 public class NewTrip extends Fragment {
 
-    Button members;
+    Button members,start;
+    MaterialEditText from,destination,amount,commonexpense;
+
 
     DatePickerEditText trip_date;
 
@@ -36,11 +38,21 @@ public class NewTrip extends Fragment {
         final Context context = getActivity();
 
         members = rootView.findViewById(R.id.membersDetails);
-
         trip_date = rootView.findViewById(R.id.et_trip_date);
+        start = rootView.findViewById(R.id.start_trip_button);
+        from = rootView.findViewById(R.id.from_journey);
+        destination = rootView.findViewById(R.id.destination);
+        amount = rootView.findViewById(R.id.amount_per);
+        commonexpense = rootView.findViewById(R.id.common_expense);
+
+
+
+
+
+
+
 
         trip_date.setManager(getFragmentManager());
-
 
         members.setOnClickListener(new View.OnClickListener() {
             @Override

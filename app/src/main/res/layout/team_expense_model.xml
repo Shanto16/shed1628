@@ -16,7 +16,6 @@
         android:layout_gravity="center"
         />
 
-
     <EditText
         android:id="@+id/expense_expense_edit"
         android:layout_width="wrap_content"
