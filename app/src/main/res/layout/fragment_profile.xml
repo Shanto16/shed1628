@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_profile"
+        android:scaleType="centerCrop"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#E9E9E9"
+        android:layout_marginTop="16dp"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Name"
+        android:hint="Name"
+        app:met_iconLeft="@drawable/ic_assignment_ind_white_24dp"
+        android:ems="15"
+        />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Phone"
+        android:hint="Phone "
+        android:ems="15"
+        app:met_iconLeft="@drawable/ic_phone"
+        app:met_maxCharacters="15"
+        />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:met_floatingLabel="highlight"
+    app:met_floatingLabelText="Email"
+    android:hint="Email"
+    android:ems="15"
+    app:met_iconLeft="@drawable/ic_email_white_24dp"
+    />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Address"
+        android:hint="Address"
+        android:ems="15"
+        app:met_iconLeft="@drawable/ic_edit_location_white_24dp"
+        />
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Save"
+        android:layout_marginTop="50dp"
+
+        />
+
+
+</LinearLayout>
