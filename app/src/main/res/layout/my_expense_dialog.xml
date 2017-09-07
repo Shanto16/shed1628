@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/add_new_expense"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
@@ -20,5 +21,12 @@
         android:layout_margin="16sp">
 
     </ListView>
+
+    <Button
+        android:id="@+id/my_expense_save"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Save"/>
 
 </LinearLayout>
