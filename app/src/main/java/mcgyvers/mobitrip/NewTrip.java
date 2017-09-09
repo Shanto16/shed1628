@@ -15,9 +15,12 @@ import android.widget.DatePicker;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText;
+import mcgyvers.mobitrip.dataModels.Member;
+import mcgyvers.mobitrip.dataModels.Trip;
 
 /**
  * Created by Shanto on 9/5/2017.
@@ -26,8 +29,11 @@ import io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText;
 public class NewTrip extends Fragment {
 
     Button members;
-
+    SimpleDateFormat date;
     DatePickerEditText trip_date;
+    //Integer personalAmount;
+    //Integer commonExpediture;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -42,6 +48,7 @@ public class NewTrip extends Fragment {
         trip_date.setManager(getFragmentManager());
 
 
+
         members.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +60,13 @@ public class NewTrip extends Fragment {
 
 
 
+
+
         return rootView;
+    }
+
+    void createTrip(SimpleDateFormat date, String origin, String destination, Integer amount, Integer common, ArrayList<Member> members){
+        Trip trip = new Trip(origin, destination, amount, common, null, date);
     }
 
 
