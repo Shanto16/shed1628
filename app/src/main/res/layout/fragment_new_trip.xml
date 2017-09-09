@@ -16,6 +16,7 @@
         android:orientation="vertical"
         >
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/from_journey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:met_floatingLabel="highlight"
@@ -28,6 +29,7 @@
             />
 
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:met_floatingLabel="highlight"
@@ -53,6 +55,7 @@
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/amount_per"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:met_floatingLabel="highlight"
@@ -66,6 +69,7 @@
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/common_expense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:met_floatingLabel="highlight"
@@ -82,7 +86,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="  Member Informations"
+            android:layout_gravity="center_horizontal"
             android:drawableLeft="@drawable/ic_members"/>
+
+
+
+
+        <Button
+            android:id="@+id/start_trip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Start Trip"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/ic_add_new"/>
 
 
     </LinearLayout>

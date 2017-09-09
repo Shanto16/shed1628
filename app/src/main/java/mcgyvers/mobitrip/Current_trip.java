@@ -66,6 +66,7 @@ public class Current_trip extends Fragment {
                     }
                 });
 
+
                 ImageView addExpense = dialog.findViewById(R.id.add_new_expense);
                 addExpense.setOnClickListener(new View.OnClickListener() {
                     @Override
