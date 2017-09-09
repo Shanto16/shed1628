@@ -28,7 +28,6 @@ import mcgyvers.mobitrip.dataModels.Trip;
 
 public class NewTrip extends Fragment {
 
-    Button members;
     SimpleDateFormat date;
     Button members,start;
     MaterialEditText from,destination,amount,commonexpense;
