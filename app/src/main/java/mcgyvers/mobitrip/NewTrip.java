@@ -55,12 +55,6 @@ public class NewTrip extends Fragment {
 
 
 
-
-
-
-
-
-
         trip_date.setManager(getFragmentManager());
 
         members.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +72,6 @@ public class NewTrip extends Fragment {
                //         Integer.parseInt(commonexpense.getText().toString()), null);
             }
         });
-
-
-
 
 
 
