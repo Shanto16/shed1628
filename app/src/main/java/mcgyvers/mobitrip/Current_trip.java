@@ -2,6 +2,7 @@ package mcgyvers.mobitrip;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,11 +28,11 @@ public class Current_trip extends Fragment {
 
     float pcnt = (min / max) * 100;
 
-    TextView _expense;
+    TextView _expense,spent,currentLocation, temp,weather;
     ColorfulRingProgressView expenseProgress;
 
 
-    Button team_expense, my_expense;
+    Button team_expense, my_expense,hospitals,policeStation,maps,navigation,restaurants,hotels,fuel,spots,dismiss,finish;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -40,10 +41,79 @@ public class Current_trip extends Fragment {
         final Context context = getActivity();
 
 
+        Typeface regular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Regular.ttf");
+        Typeface bold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Bold.ttf");
+
+
+
         team_expense = rootView.findViewById(R.id.team_expense_button);
         my_expense = rootView.findViewById(R.id.my_expense_button);
         expenseProgress = rootView.findViewById(R.id.expense_progressbar);
         _expense = rootView.findViewById(R.id.pcnt_expense);
+        spent = rootView.findViewById(R.id.spent_card);
+        currentLocation = rootView.findViewById(R.id.current_location_text);
+        temp = rootView.findViewById(R.id.temp_text);
+        weather = rootView.findViewById(R.id.weather_text);
+
+        hospitals = rootView.findViewById(R.id.nav_hospitals);
+        policeStation = rootView.findViewById(R.id.nav_police);
+        maps = rootView.findViewById(R.id.nav_maps);
+        navigation = rootView.findViewById(R.id.nav_current);
+        restaurants = rootView.findViewById(R.id.nav_restaurants);
+        hotels = rootView.findViewById(R.id.nav_hotels);
+        fuel = rootView.findViewById(R.id.nav_fuel);
+        spots = rootView.findViewById(R.id.nav_spots);
+        dismiss = rootView.findViewById(R.id.nav_dismiss);
+        finish = rootView.findViewById(R.id.nav_finish);
+
+
+
+
+
+
+        hospitals.setTransformationMethod(null);
+        policeStation.setTransformationMethod(null);
+        maps.setTransformationMethod(null);
+        navigation.setTransformationMethod(null);
+        restaurants.setTransformationMethod(null);
+        hotels.setTransformationMethod(null);
+        fuel.setTransformationMethod(null);
+        spots.setTransformationMethod(null);
+        dismiss.setTransformationMethod(null);
+        finish.setTransformationMethod(null);
+        team_expense.setTransformationMethod(null);
+        my_expense.setTransformationMethod(null);
+
+
+
+
+
+
+
+        hospitals.setTypeface(regular);
+        policeStation.setTypeface(regular);
+        maps.setTypeface(regular);
+        navigation.setTypeface(regular);
+        restaurants.setTypeface(regular);
+        hotels.setTypeface(regular);
+        fuel.setTypeface(regular);
+        spots.setTypeface(regular);
+        dismiss.setTypeface(regular);
+        finish.setTypeface(regular);
+        team_expense.setTypeface(regular);
+        my_expense.setTypeface(regular);
+        weather.setTypeface(regular);
+        temp.setTypeface(regular);
+        currentLocation.setTypeface(regular);
+
+        _expense.setTypeface(bold);
+        spent.setTypeface(bold);
+
+
+
+
+
+
 
         expenseProgress.setPercent(pcnt);
         _expense.setText(Float.toString(pcnt)+"%");
