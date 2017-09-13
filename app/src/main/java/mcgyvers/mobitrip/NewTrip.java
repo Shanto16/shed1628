@@ -3,17 +3,26 @@ package mcgyvers.mobitrip;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -24,11 +33,12 @@ import mcgyvers.mobitrip.dataModels.Trip;
 
 /**
  * Created by Shanto on 9/5/2017.
+ * class handling the creation new trips
  */
 
 public class NewTrip extends Fragment {
 
-    SimpleDateFormat date;
+    //SimpleDateFormat date;
     Button members,start;
     MaterialEditText from,destination,amount,commonexpense;
 
@@ -68,8 +78,22 @@ public class NewTrip extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // createTrip(date, from.getText().toString(), destination.getText().toString(),Integer.parseInt(amount.getText().toString()),
-               //         Integer.parseInt(commonexpense.getText().toString()), null);
+                String tdate = "";
+                String fr = "";
+                String dest = "";
+
+                fr = from.getText().toString();
+                tdate = trip_date.getText().toString();
+                dest = destination.getText().toString();
+
+                if(tdate.equals("") || fr.equals("") || dest.equals("")){
+                    Toast.makeText(getContext(), "Locations and date fields must be filled", Toast.LENGTH_LONG).show();
+                }else{
+                    createTrip(tdate, fr, dest ,Integer.parseInt(amount.getText().toString()),
+                            Integer.parseInt(commonexpense.getText().toString()), null);
+                }
+
+
             }
         });
 
@@ -78,8 +102,43 @@ public class NewTrip extends Fragment {
         return rootView;
     }
 
-    void createTrip(SimpleDateFormat date, String origin, String destination, Integer amount, Integer common, ArrayList<Member> members){
-        Trip trip = new Trip(origin, destination, amount, common, null, date);
+    void createTrip(String date, String origin, String destination_s, Integer amount_s, Integer common_s, ArrayList<Member> members){
+
+        Context context = getActivity();
+        //getting the handle of sharedpreferences to store the due values
+        SharedPreferences sharedPreferences = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        //getting the number of trips currently in store in order to creat an id for the new trip
+        long tripsN = sharedPreferences.getLong(getString(R.string.trip_count), 0);
+        Trip trip = new Trip(origin, destination_s, amount_s, common_s, null, date, String.valueOf(++tripsN));
+
+        Editor editor = sharedPreferences.edit();
+
+        try {
+            //getting the array with the previous trips from storage
+            JSONArray trips = new JSONArray(sharedPreferences.getString(getString(R.string.trips_array), "[]"));
+            //creates json object with the new trip and puts it into the array of trips
+            JSONObject newTrip = trip.getTripJson();
+            trips.put(newTrip);
+
+            //add everything to storage and save
+            editor.putString(getString(R.string.trips_array), trips.toString());
+            editor.putLong(getString(R.string.trip_count), ++tripsN);
+            editor.apply();
+
+            System.out.println(trips.toString());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        Toast.makeText(getContext(), "Trip succesfully added!", Toast.LENGTH_LONG).show();
+        from.setText("");
+        destination.setText("");
+        amount.setText("");
+        commonexpense.setText("");
+        trip_date.setText("");
+
     }
 
 
