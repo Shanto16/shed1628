@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -28,6 +29,11 @@ public class Current_trip_member_information extends AppCompatActivity {
 
     Button addmember,save,cancel;
     RecyclerView membersInformation;
+
+
+
+    MaterialEditText name,contact_num,amount;
+    ImageButton add_now;
 
 
     //**********************************************
@@ -57,10 +63,27 @@ public class Current_trip_member_information extends AppCompatActivity {
         save = (Button) findViewById(R.id.save_members);
         cancel = (Button) findViewById(R.id.cancel_members);
 
+
+
+        //*****************Recyclerview Model**************************
         memberName = (MaterialEditText) findViewById(R.id.model_member_name);
         memberAmount = (MaterialEditText) findViewById(R.id.model_member_amount);
         memberPhone = (MaterialEditText) findViewById(R.id.model_member_phone);
         deleteMember = (ImageView) findViewById(R.id.delete_model);
+
+
+
+
+        //*****************FIXED FIELDS**************************
+        name = (MaterialEditText) findViewById(R.id.fixed_model_member_name);
+        contact_num = (MaterialEditText) findViewById(R.id.fixed_model_member_phone);
+        amount = (MaterialEditText) findViewById(R.id.fixed_model_member_amount);
+        add_now = (ImageButton) findViewById(R.id.fixed_add_model);
+
+
+
+
+
 
         mAdapter = new MemberData(memberList, getApplicationContext());
         layoutManager = new LinearLayoutManager(getApplicationContext());
