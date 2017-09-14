@@ -39,7 +39,7 @@ public class Current_trip extends Fragment {
     ColorfulRingProgressView expenseProgress;
 
 
-    Button team_expense, my_expense,hospitals,policeStation,maps,navigation,restaurants,hotels,fuel,spots,dismiss,finish;
+    Button team_expense, my_expense,hospitals,policeStation,maps,navigation,restaurants,hotels,fuel,spots,dismiss,finish,camera;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -73,6 +73,7 @@ public class Current_trip extends Fragment {
         spots = rootView.findViewById(R.id.nav_spots);
         dismiss = rootView.findViewById(R.id.nav_dismiss);
         finish = rootView.findViewById(R.id.nav_finish);
+        camera = rootView.findViewById(R.id.take_pics);
 
 
 
@@ -91,6 +92,8 @@ public class Current_trip extends Fragment {
         finish.setTransformationMethod(null);
         team_expense.setTransformationMethod(null);
         my_expense.setTransformationMethod(null);
+        camera.setTransformationMethod(null);
+
 
 
 
@@ -113,6 +116,8 @@ public class Current_trip extends Fragment {
         weather.setTypeface(regular);
         temp.setTypeface(regular);
         currentLocation.setTypeface(regular);
+        camera.setTypeface(regular);
+
 
         _expense.setTypeface(bold);
         spent.setTypeface(bold);
@@ -189,5 +194,22 @@ public class Current_trip extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_current_trip, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.sos:
+                Toast.makeText(getActivity(), "a pop up screen will be opened here asking for an emergency number", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
