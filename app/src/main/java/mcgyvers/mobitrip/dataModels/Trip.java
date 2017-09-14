@@ -1,11 +1,6 @@
 package mcgyvers.mobitrip.dataModels;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.SimpleTimeZone;
 
 /**
  * Created by edson on 09/09/17.
@@ -18,14 +13,14 @@ public class Trip {
     private String tripId;
     private String origin;
     private String destination;
-    //private String coverPic;
+    private String coverPic;
     private Integer amount;
     private Integer commonExp;
     private String date;
-    //private boolean completed;
+    private boolean completed;
 
 
-    //private ArrayList<Member> members;
+    private ArrayList<Member> members;
 
     public Trip(){}
 
@@ -35,13 +30,14 @@ public class Trip {
         this.destination = destination;
         this.amount = amount;
         this.commonExp = commonExp;
-        //this.members = Members;
+        this.members = Members;
         this.date = date;
-        //this.completed = false;
-        //this.members = new ArrayList<>();
+        this.setCompleted(false);
+        this.members = new ArrayList<>();
         this.tripId = tripId; //later on generate them upon checking the local storage
     }
 
+    /*
     public JSONObject getTripJson(){
         JSONObject trip = new JSONObject();
         try{
@@ -58,7 +54,7 @@ public class Trip {
         }
 
         return  trip;
-    }
+    }*/
 
     public String getTripId() {
         return tripId;
@@ -99,14 +95,14 @@ public class Trip {
     public void setCommonExp(Integer commonExp) {
         this.commonExp = commonExp;
     }
-    /*
+
     public ArrayList<Member> getMembers() {
         return members;
     }
-    */
-    /*public void setMembers(ArrayList<Member> Members) {
+
+    public void setMembers(ArrayList<Member> Members) {
         this.members = Members;
-    }*/
+    }
 
 
     public String getDate() {
@@ -116,7 +112,7 @@ public class Trip {
     public void setDate(String date) {
         this.date = date;
     }
-    /*
+
     public String getCoverPic() {
         return coverPic;
     }
@@ -124,5 +120,12 @@ public class Trip {
     public void setCoverPic(String coverPic) {
         this.coverPic = coverPic;
     }
-    */
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 }

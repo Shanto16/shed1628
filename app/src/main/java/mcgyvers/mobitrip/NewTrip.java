@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.json.JSONArray;
@@ -70,6 +72,22 @@ public class NewTrip extends Fragment {
         members.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO: encapsulate this code
+                String tdate = "";
+                String fr = "";
+                String dest = "";
+
+                fr = from.getText().toString();
+                tdate = trip_date.getText().toString();
+                dest = destination.getText().toString();
+
+                if(tdate.equals("") || fr.equals("") || dest.equals("")){
+                    Toast.makeText(getContext(), "Locations and date fields must be filled", Toast.LENGTH_LONG).show();
+                }else{
+                    createTrip(tdate, fr, dest ,Integer.parseInt(amount.getText().toString()),
+                            Integer.parseInt(commonexpense.getText().toString()), null);
+                }
+
                 startActivity(new Intent(getActivity(),Current_trip_member_information.class));
 
             }
@@ -111,15 +129,27 @@ public class NewTrip extends Fragment {
         long tripsN = sharedPreferences.getLong(getString(R.string.trip_count), 0);
         Trip trip = new Trip(origin, destination_s, amount_s, common_s, null, date, String.valueOf(++tripsN));
 
+
+
         Editor editor = sharedPreferences.edit();
 
         try {
-            //TODO: use GSON to encapsulate and handle json and arrays
+            //
             //TODO: organize and debug the trips' ids
+            Gson gson = new Gson();
+            String tripArray = sharedPreferences.getString(getString(R.string.trips_array), "[]");
+            ArrayList<Trip> getAllTrips = gson.fromJson(tripArray, new TypeToken<ArrayList<Trip>>(){}.getType());
+            for(int i = 0; i < getAllTrips.size(); i++){
+                if(!getAllTrips.get(i).isCompleted()){
+                    Toast.makeText(getContext(), "you currently have an ongoing trip", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+
             //getting the array with the previous trips from storage
-            JSONArray trips = new JSONArray(sharedPreferences.getString(getString(R.string.trips_array), "[]"));
+            JSONArray trips = new JSONArray(tripArray);
             //creates json object with the new trip and puts it into the array of trips
-            JSONObject newTrip = trip.getTripJson();
+            JSONObject newTrip =  new JSONObject(gson.toJson(trip));
             trips.put(newTrip);
 
             //add everything to storage and save
