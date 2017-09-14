@@ -21,13 +21,13 @@
             android:drawableLeft="@drawable/ic_add_member"
             android:text="   Add Member"/>
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/member_information_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp">
-        </ListView>
+        </android.support.v7.widget.RecyclerView>
 
 
         <LinearLayout

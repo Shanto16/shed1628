@@ -3,9 +3,14 @@ package mcgyvers.mobitrip;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.timqi.sectorprogressview.ColorfulRingProgressView;
+
+import static mcgyvers.mobitrip.R.id.toolbar;
 
 /**
  * Created by Shanto on 9/7/2017.
@@ -37,6 +44,7 @@ public class Current_trip extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         final View rootView = inflater.inflate(R.layout.fragment_current_trip, container, false);
         final Context context = getActivity();
 
@@ -180,4 +188,6 @@ public class Current_trip extends Fragment {
 
         return rootView;
     }
+
+
 }

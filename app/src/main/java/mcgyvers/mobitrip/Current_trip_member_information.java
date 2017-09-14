@@ -15,7 +15,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 public class Current_trip_member_information extends AppCompatActivity {
 
     Button addmember,save,cancel;
-    ListView membersInformation;
+    RecyclerView membersInformation;
 
 
     //**********************************************
@@ -34,7 +34,7 @@ public class Current_trip_member_information extends AppCompatActivity {
 
 
         addmember = (Button) findViewById(R.id.add_new_member);
-        membersInformation = (ListView) findViewById(R.id.member_information_recycler);
+        membersInformation = (RecyclerView) findViewById(R.id.member_information_recycler);
         save = (Button) findViewById(R.id.save_members);
         cancel = (Button) findViewById(R.id.cancel_members);
 
