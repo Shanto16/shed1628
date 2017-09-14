@@ -14,16 +14,18 @@ import java.util.SimpleTimeZone;
 
 public class Trip {
 
+    //TODO: add in the commented fields on the other structures
     private String tripId;
     private String origin;
     private String destination;
-    private String coverPic;
+    //private String coverPic;
     private Integer amount;
     private Integer commonExp;
     private String date;
+    //private boolean completed;
 
 
-    private ArrayList<Member> members;
+    //private ArrayList<Member> members;
 
     public Trip(){}
 
@@ -33,9 +35,10 @@ public class Trip {
         this.destination = destination;
         this.amount = amount;
         this.commonExp = commonExp;
-        this.members = Members;
+        //this.members = Members;
         this.date = date;
-
+        //this.completed = false;
+        //this.members = new ArrayList<>();
         this.tripId = tripId; //later on generate them upon checking the local storage
     }
 
@@ -45,10 +48,11 @@ public class Trip {
             trip.put("tripId", this.tripId);
             trip.put("origin", this.origin);
             trip.put("destination", this.destination);
-            trip.put("coverPic", this.coverPic);
+            //trip.put("coverPic", this.coverPic);
             trip.put("amount", this.amount);
             trip.put("commomExp", this.commonExp);
             trip.put("date", this.date);
+            //trip.put("completed", this.completed);
         } catch (JSONException e){
             e.printStackTrace();
         }
@@ -95,14 +99,14 @@ public class Trip {
     public void setCommonExp(Integer commonExp) {
         this.commonExp = commonExp;
     }
-
+    /*
     public ArrayList<Member> getMembers() {
         return members;
     }
-
-    public void setMembers(ArrayList<Member> Members) {
+    */
+    /*public void setMembers(ArrayList<Member> Members) {
         this.members = Members;
-    }
+    }*/
 
 
     public String getDate() {
@@ -112,7 +116,7 @@ public class Trip {
     public void setDate(String date) {
         this.date = date;
     }
-
+    /*
     public String getCoverPic() {
         return coverPic;
     }
@@ -120,4 +124,5 @@ public class Trip {
     public void setCoverPic(String coverPic) {
         this.coverPic = coverPic;
     }
+    */
 }

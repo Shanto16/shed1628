@@ -114,6 +114,8 @@ public class NewTrip extends Fragment {
         Editor editor = sharedPreferences.edit();
 
         try {
+            //TODO: use GSON to encapsulate and handle json and arrays
+            //TODO: organize and debug the trips' ids
             //getting the array with the previous trips from storage
             JSONArray trips = new JSONArray(sharedPreferences.getString(getString(R.string.trips_array), "[]"));
             //creates json object with the new trip and puts it into the array of trips
