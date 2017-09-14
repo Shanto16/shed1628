@@ -80,9 +80,9 @@ public class YourTrips extends Fragment {
         Gson gson = new Gson();
         ArrayList<Trip> getAllTrips = gson.fromJson(data, new TypeToken<ArrayList<Trip>>(){}.getType());
         tripList.addAll(getAllTrips);
-        System.out.println("Total trips: "+tripList.size());
-        System.out.println(tripList.toString());
-        System.out.println(tripList.get(0).getOrigin());
+        //System.out.println("Total trips: "+tripList.size());
+        //System.out.println(tripList.toString());
+        //System.out.println(tripList.get(0).getOrigin());
         mAdaper.notifyDataSetChanged();
         System.out.println("adapter has: " + mAdaper.getItemCount() + " objects");
 
