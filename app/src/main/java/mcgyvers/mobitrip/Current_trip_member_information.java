@@ -10,10 +10,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -42,6 +45,7 @@ public class Current_trip_member_information extends AppCompatActivity {
     MaterialEditText memberName,memberAmount,memberPhone;
     ImageView deleteMember;
 
+    RelativeLayout memberCard;
     //********************************************
 
     MemberData mAdapter;
@@ -49,6 +53,10 @@ public class Current_trip_member_information extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
+    Trip currentTrip;
+    ArrayList<Trip> cTrips = new ArrayList<>();
+    int tripId;
 
 
     @Override
@@ -63,7 +71,7 @@ public class Current_trip_member_information extends AppCompatActivity {
         save = (Button) findViewById(R.id.save_members);
         cancel = (Button) findViewById(R.id.cancel_members);
 
-
+        memberCard = (RelativeLayout) findViewById(R.id.membercard);
 
         //*****************Recyclerview Model**************************
         memberName = (MaterialEditText) findViewById(R.id.model_member_name);
@@ -95,6 +103,91 @@ public class Current_trip_member_information extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         //getCurrentTrip();
+        memberCard.setVisibility(View.INVISIBLE);
+
+        addmember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //here we make the fixed form visible
+                memberCard.setVisibility(View.VISIBLE);
+            }
+        });
+
+        add_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //here we add members to the temporary list of members
+
+                String nameS = name.getText().toString();
+                String phoneS = contact_num.getText().toString();
+                String amountS = amount.getText().toString();
+
+
+                if(nameS.isEmpty() || phoneS.isEmpty() || amountS.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please fill all the member fields", Toast.LENGTH_LONG).show();
+                }else{
+                    addNewMember(nameS, phoneS, amountS);
+                }
+
+
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //here we save the added members on the memory
+                saveItAll();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //here we just go back to the previous activity
+                finish();
+            }
+        });
+
+        setData();
+
+
+    }
+
+    private void saveItAll() {
+        currentTrip.setMembers(memberList);
+        cTrips.set(tripId, currentTrip);
+        Gson gson = new Gson();
+        String tripsArray = gson.toJson(cTrips, new TypeToken<ArrayList<Trip>>(){}.getType());
+
+        editor.putString(getString(R.string.trips_array), tripsArray);
+        editor.apply();
+        System.out.println(tripsArray);
+        Toast.makeText(getApplicationContext(), "Users saved!", Toast.LENGTH_LONG).show();
+        finish();
+
+
+    }
+
+    private void addNewMember(String name, String phone, String amount) {
+        Member member = new Member(name, phone, amount);
+        memberList.add(member);
+        mAdapter.notifyDataSetChanged();
+        System.out.println(memberList);
+
+
+    }
+
+
+    private void setData() {
+
+        currentTrip = getCurrentTrip();
+        memberList.addAll(currentTrip.getMembers());
+        mAdapter.notifyDataSetChanged();
+        System.out.println("list of current trip members " + currentTrip.getMembers().size());
+        System.out.println("list of members are " + memberList.size());
+        System.out.println("members are now " +  mAdapter.getItemCount());
+
 
     }
 
@@ -102,10 +195,10 @@ public class Current_trip_member_information extends AppCompatActivity {
         String data = sharedPreferences.getString(getString(R.string.trips_array), "[]");
         Gson gson = new Gson();
         Trip trip = null;
-        ArrayList<Trip> getAllTrips = gson.fromJson(data, new TypeToken<ArrayList<Trip>>(){}.getType());
-        for(int i = 0; i < getAllTrips.size(); i++){
-            if(!getAllTrips.get(i).isCompleted()){
-                trip = getAllTrips.get(i);
+        cTrips = gson.fromJson(data, new TypeToken<ArrayList<Trip>>(){}.getType());
+        for(tripId = 0; tripId < cTrips.size(); tripId++){
+            if(!cTrips.get(tripId).isCompleted()){
+                trip = cTrips.get(tripId);
                 return trip;
             }
         }

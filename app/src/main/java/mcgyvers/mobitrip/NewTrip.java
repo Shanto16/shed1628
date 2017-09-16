@@ -96,6 +96,7 @@ public class NewTrip extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO:check if amounts are numbers
                 String tdate = "";
                 String fr = "";
                 String dest = "";
@@ -156,7 +157,6 @@ public class NewTrip extends Fragment {
             editor.putString(getString(R.string.trips_array), trips.toString());
             editor.putLong(getString(R.string.trip_count), ++tripsN);
             editor.apply();
-
             System.out.println(trips.toString());
 
         } catch (JSONException e) {

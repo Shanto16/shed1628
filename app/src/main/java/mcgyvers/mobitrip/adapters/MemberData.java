@@ -16,6 +16,7 @@ import mcgyvers.mobitrip.dataModels.Member;
 
 /**
  * Created by edson on 14/09/17.
+ * adapter for adding members in proper pages
  */
 
 public class MemberData extends RecyclerView.Adapter<MemberData.MyViewHolder> {
@@ -26,13 +27,15 @@ public class MemberData extends RecyclerView.Adapter<MemberData.MyViewHolder> {
     public MemberData(ArrayList<Member> members, Context context) {
         this.members = members;
         this.context = context;
+        System.out.println("Members adapter");
+//        System.out.println("first member is : " + members.get(0).getName());
     }
 
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.my_trips_model, viewGroup, false);
+                .inflate(R.layout.members_model, viewGroup, false);
         return new MyViewHolder(itemView);
     }
 
@@ -40,7 +43,7 @@ public class MemberData extends RecyclerView.Adapter<MemberData.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Integer pos = position;
         final Member member = members.get(pos);
-
+        System.out.println("setting up members adapter");
         holder.memberName.setText(member.getName());
         holder.memberAmount.setText(member.getAmount());
         holder.memberPhone.setText(member.getPhone());

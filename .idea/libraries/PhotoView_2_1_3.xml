@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="PhotoView-2.1.3">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/093ca66fd51e3be9b99f0eb9faafae77eaafb0ae/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/093ca66fd51e3be9b99f0eb9faafae77eaafb0ae/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/9158edb6801b6b00c85f356829a3bf9ef64a28e1/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/9158edb6801b6b00c85f356829a3bf9ef64a28e1/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
