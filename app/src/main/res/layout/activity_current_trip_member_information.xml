@@ -22,6 +22,7 @@
             android:text="   Add Member"/>
 
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -60,8 +61,8 @@
 
             <View
                 android:layout_width="0.01dp"
-                android:layout_height="100dp"
-                android:background="#e0e0e0"
+                android:layout_height="120dp"
+                android:background="#757575"
                 android:layout_toRightOf="@+id/fixed_model_member_phone"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="32dp"
@@ -75,11 +76,12 @@
                 android:layout_alignTop="@id/fixed_model_member_amount"
                 android:layout_marginEnd="8dp"
                 android:layout_alignParentEnd="true"
-                android:elevation="2dp"
+                android:elevation="8dp"
                 />
 
-
         </RelativeLayout>
+
+
 
 
 

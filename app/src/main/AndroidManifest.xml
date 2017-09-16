@@ -26,7 +26,7 @@
                 android:value="mcgyvers.mobitrip.MainActivity" />
         </activity>
         <activity android:name=".CompletedTrip" />
-        <activity android:name=".Fullscreen_single"></activity>
+        <activity android:name=".Fullscreen_single"/>
     </application>
 
 </manifest>
