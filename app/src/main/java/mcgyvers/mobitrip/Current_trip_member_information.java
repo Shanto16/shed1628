@@ -103,7 +103,7 @@ public class Current_trip_member_information extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         //getCurrentTrip();
-        memberCard.setVisibility(View.INVISIBLE);
+        memberCard.setVisibility(View.INVISIBLE);//
 
         addmember.setOnClickListener(new View.OnClickListener() {
             @Override
