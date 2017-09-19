@@ -28,7 +28,7 @@ import mcgyvers.mobitrip.adapters.MemberData;
 import mcgyvers.mobitrip.dataModels.Member;
 import mcgyvers.mobitrip.dataModels.Trip;
 
-public class Current_trip_member_information extends AppCompatActivity {
+public class Current_trip_member_information extends AppCompatActivity implements MemberData.onItemClickListener{
 
     Button addmember,save,cancel;
     RecyclerView membersInformation;
@@ -93,7 +93,7 @@ public class Current_trip_member_information extends AppCompatActivity {
 
 
 
-        mAdapter = new MemberData(memberList, getApplicationContext());
+        mAdapter = new MemberData(memberList, getApplicationContext(), this);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         membersInformation.setLayoutManager(layoutManager);
         membersInformation.setItemAnimator(new DefaultItemAnimator());
@@ -103,7 +103,7 @@ public class Current_trip_member_information extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         //getCurrentTrip();
-        memberCard.setVisibility(View.INVISIBLE);//
+        memberCard.setVisibility(View.GONE);//
 
         addmember.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,10 +169,14 @@ public class Current_trip_member_information extends AppCompatActivity {
 
     }
 
-    private void addNewMember(String name, String phone, String amount) {
-        Member member = new Member(name, phone, amount);
+    private void addNewMember(String nameS, String phoneS, String amountS) {
+        Member member = new Member(nameS, phoneS, amountS);
         memberList.add(member);
         mAdapter.notifyDataSetChanged();
+        name.setText("");
+        contact_num.setText("");
+        amount.setText("");
+        Toast.makeText(getApplicationContext(), "Member added", Toast.LENGTH_LONG).show();
         System.out.println(memberList);
 
 
@@ -217,5 +221,12 @@ public class Current_trip_member_information extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    //callback to handle the deletion of members
+    @Override
+    public void callback(int pos) {
+        memberList.remove(pos);
+        mAdapter.notifyDataSetChanged();
     }
 }

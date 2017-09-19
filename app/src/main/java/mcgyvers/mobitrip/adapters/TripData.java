@@ -63,8 +63,8 @@ public class TripData extends RecyclerView.Adapter<TripData.MyViewHolder> {
         holder.trip_bg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //context.startActivity(new Intent(context, CompletedTrip.class));
-                context.startActivity(new Intent(context, Current_trip_member_information.class));
+                context.startActivity(new Intent(context, CompletedTrip.class));
+                //context.startActivity(new Intent(context, Current_trip_member_information.class));
             }
         });
         //holder.trip_bg.setImageResource();

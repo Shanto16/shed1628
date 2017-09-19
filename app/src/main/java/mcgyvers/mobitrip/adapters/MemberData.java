@@ -17,17 +17,25 @@ import mcgyvers.mobitrip.dataModels.Member;
 /**
  * Created by edson on 14/09/17.
  * adapter for adding members in proper pages
+ *
  */
 
 public class MemberData extends RecyclerView.Adapter<MemberData.MyViewHolder> {
 
     private ArrayList<Member> members;
     private Context context;
+    private final onItemClickListener clickListener;
 
-    public MemberData(ArrayList<Member> members, Context context) {
+    /**
+     * @param members list of member objects
+     * @param context application context
+     */
+    public MemberData(ArrayList<Member> members, Context context, onItemClickListener listener) {
         this.members = members;
         this.context = context;
+        this.clickListener = listener;
         System.out.println("Members adapter");
+
 //        System.out.println("first member is : " + members.get(0).getName());
     }
 
@@ -48,12 +56,19 @@ public class MemberData extends RecyclerView.Adapter<MemberData.MyViewHolder> {
         holder.memberAmount.setText(member.getAmount());
         holder.memberPhone.setText(member.getPhone());
 
+        holder.deleteMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.callback(pos);
+            }
+        });
+
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return members.size();
     }
 
 
@@ -69,6 +84,12 @@ public class MemberData extends RecyclerView.Adapter<MemberData.MyViewHolder> {
             memberAmount = (MaterialEditText) view.findViewById(R.id.model_member_amount);
             memberPhone = (MaterialEditText) view.findViewById(R.id.model_member_phone);
             deleteMember = (ImageView) view.findViewById(R.id.delete_model);
+
         }
+    }
+
+    public interface onItemClickListener{
+
+        public void callback(int pos);
     }
 }
