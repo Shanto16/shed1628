@@ -15,43 +15,41 @@
             android:id="@+id/expense_progressbar"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
             app:bgColor="#e1e1e1"
             app:fgColorEnd="#455A64"
             app:fgColorStart="#90A4AE"
             app:percent="70"
             app:startAngle="0"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="16dp"
             app:strokeWidth="5dp" />
 
         <TextView
             android:id="@+id/pcnt_expense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="56dp"
-            />
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/spent_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:textSize="14sp"
             android:layout_below="@+id/pcnt_expense"
             android:layout_centerHorizontal="true"
             android:text="Spent"
-            />
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/expense_progressbar"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:orientation="horizontal">
 
 
@@ -68,8 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/colorAccent"
-                android:text="Thanchi" />
+                android:text="Thanchi"
+                android:textColor="@color/colorAccent" />
 
             <View
                 android:layout_width="0dp"
@@ -89,8 +87,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/colorAccent"
-                android:text="32°c" />
+                android:text="32°c"
+                android:textColor="@color/colorAccent" />
 
             <View
                 android:layout_width="0dp"
@@ -110,8 +108,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/colorAccent"
-                android:text="Cloudy" />
+                android:text="Cloudy"
+                android:textColor="@color/colorAccent" />
 
         </LinearLayout>
 

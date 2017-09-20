@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,9 +38,10 @@ public class Current_trip extends Fragment {
 
     TextView _expense,spent,currentLocation, temp,weather;
     ColorfulRingProgressView expenseProgress;
+    Toolbar mToolbar;
 
 
-    Button team_expense, my_expense,hospitals,policeStation,maps,navigation,restaurants,hotels,fuel,spots,dismiss,finish,camera;
+    Button team_expense, my_expense,hospitals,policeStation,maps,camera,restaurants,hotels,fuel,spots,dismiss,finish;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -47,6 +49,11 @@ public class Current_trip extends Fragment {
         setHasOptionsMenu(true);
         final View rootView = inflater.inflate(R.layout.fragment_current_trip, container, false);
         final Context context = getActivity();
+        mToolbar = rootView.findViewById(R.id.toolbar);
+
+        getActivity().supportInvalidateOptionsMenu();
+
+
 
 
         Typeface regular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Regular.ttf");
@@ -66,14 +73,13 @@ public class Current_trip extends Fragment {
         hospitals = rootView.findViewById(R.id.nav_hospitals);
         policeStation = rootView.findViewById(R.id.nav_police);
         maps = rootView.findViewById(R.id.nav_maps);
-        navigation = rootView.findViewById(R.id.nav_current);
+        camera = rootView.findViewById(R.id.cam_current);
         restaurants = rootView.findViewById(R.id.nav_restaurants);
         hotels = rootView.findViewById(R.id.nav_hotels);
         fuel = rootView.findViewById(R.id.nav_fuel);
         spots = rootView.findViewById(R.id.nav_spots);
         dismiss = rootView.findViewById(R.id.nav_dismiss);
         finish = rootView.findViewById(R.id.nav_finish);
-        camera = rootView.findViewById(R.id.take_pics);
 
 
 
@@ -83,7 +89,7 @@ public class Current_trip extends Fragment {
         hospitals.setTransformationMethod(null);
         policeStation.setTransformationMethod(null);
         maps.setTransformationMethod(null);
-        navigation.setTransformationMethod(null);
+        camera.setTransformationMethod(null);
         restaurants.setTransformationMethod(null);
         hotels.setTransformationMethod(null);
         fuel.setTransformationMethod(null);
@@ -104,7 +110,7 @@ public class Current_trip extends Fragment {
         hospitals.setTypeface(regular);
         policeStation.setTypeface(regular);
         maps.setTypeface(regular);
-        navigation.setTypeface(regular);
+        camera.setTypeface(regular);
         restaurants.setTypeface(regular);
         hotels.setTypeface(regular);
         fuel.setTypeface(regular);
@@ -187,6 +193,7 @@ public class Current_trip extends Fragment {
 
                 dialog.show();
 
+
             }
         });
 
@@ -200,6 +207,12 @@ public class Current_trip extends Fragment {
         super.onCreateOptionsMenu(menu,inflater);
     }
 
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item= menu.findItem(R.id.sos);
+        item.setVisible(true);
+        super.onPrepareOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

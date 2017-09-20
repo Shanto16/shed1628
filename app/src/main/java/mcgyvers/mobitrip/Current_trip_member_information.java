@@ -24,13 +24,15 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import mcgyvers.mobitrip.adapters.MemberData;
 import mcgyvers.mobitrip.dataModels.Member;
 import mcgyvers.mobitrip.dataModels.Trip;
 
 public class Current_trip_member_information extends AppCompatActivity implements MemberData.onItemClickListener{
 
-    Button addmember,save,cancel;
+    Button save,cancel;
     RecyclerView membersInformation;
 
 
@@ -59,6 +61,9 @@ public class Current_trip_member_information extends AppCompatActivity implement
     int tripId;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +71,10 @@ public class Current_trip_member_information extends AppCompatActivity implement
         ActionBar actionBar = getActionBar();
 
 
-        addmember = (Button) findViewById(R.id.add_new_member);
         membersInformation = (RecyclerView) findViewById(R.id.member_information_recycler);
+        membersInformation.setItemAnimator(new SlideInDownAnimator());
+        membersInformation.getItemAnimator().setAddDuration(4000);
+
         save = (Button) findViewById(R.id.save_members);
         cancel = (Button) findViewById(R.id.cancel_members);
 
@@ -103,15 +110,8 @@ public class Current_trip_member_information extends AppCompatActivity implement
         editor = sharedPreferences.edit();
 
         //getCurrentTrip();
-        memberCard.setVisibility(View.GONE);//
+        memberCard.setVisibility(View.VISIBLE);//
 
-        addmember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //here we make the fixed form visible
-                memberCard.setVisibility(View.VISIBLE);
-            }
-        });
 
         add_now.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,15 +123,14 @@ public class Current_trip_member_information extends AppCompatActivity implement
                 String amountS = amount.getText().toString();
 
 
-                if(nameS.isEmpty() || phoneS.isEmpty() || amountS.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Please fill all the member fields", Toast.LENGTH_LONG).show();
+                if(nameS.isEmpty() || amountS.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please fill all the member information fields", Toast.LENGTH_LONG).show();
                 }else{
                     addNewMember(nameS, phoneS, amountS);
                 }
-
-
             }
         });
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,22 +168,20 @@ public class Current_trip_member_information extends AppCompatActivity implement
 
     }
 
-    private void addNewMember(String nameS, String phoneS, String amountS) {
+    private void addNewMember(String nameS, String phoneS, String amountS ) {
         Member member = new Member(nameS, phoneS, amountS);
+        int pos = memberList.size();
         memberList.add(member);
-        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyItemInserted(pos);
         name.setText("");
         contact_num.setText("");
         amount.setText("");
         Toast.makeText(getApplicationContext(), "Member added", Toast.LENGTH_LONG).show();
         System.out.println(memberList);
-
-
     }
 
 
     private void setData() {
-
         currentTrip = getCurrentTrip();
         memberList.addAll(currentTrip.getMembers());
         mAdapter.notifyDataSetChanged();
@@ -227,6 +224,6 @@ public class Current_trip_member_information extends AppCompatActivity implement
     @Override
     public void callback(int pos) {
         memberList.remove(pos);
-        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyItemRemoved(pos);
     }
 }

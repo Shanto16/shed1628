@@ -2,6 +2,7 @@ package mcgyvers.mobitrip.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -87,6 +88,9 @@ public class TripData extends RecyclerView.Adapter<TripData.MyViewHolder> {
         public TextView trip_date;
         public TextView trip_members;
         public TextView trip_expense;
+        public TextView date_txt;
+        public TextView avg_txt;
+
 
         public MyViewHolder(View view) {
             super(view);
@@ -97,6 +101,19 @@ public class TripData extends RecyclerView.Adapter<TripData.MyViewHolder> {
             trip_name = view.findViewById(R.id.tour_name);
             trip_members = view.findViewById(R.id.trip_total_member);
             trip_expense = view.findViewById(R.id.trip_expense_per_head);
+            date_txt = view.findViewById(R.id.tour_date_txt);
+            avg_txt = view.findViewById(R.id.ic_expense_per_head);
+
+            Typeface regular = Typeface.createFromAsset(itemView.getContext().getAssets(),"fonts/Regular.ttf");
+            trip_date.setTypeface(regular);
+            trip_name.setTypeface(regular);
+            trip_members.setTypeface(regular);
+            trip_expense.setTypeface(regular);
+            date_txt.setTypeface(regular);
+            avg_txt.setTypeface(regular);
+
+
+
 
 
 

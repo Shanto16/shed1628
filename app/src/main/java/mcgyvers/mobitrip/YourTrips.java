@@ -41,6 +41,7 @@ public class YourTrips extends Fragment {
     TextView trip_date;
     TextView trip_members;
     TextView trip_expense;
+    TextView date_txt,avg_txt;
 
     private ArrayList<Trip> tripList = new ArrayList<>();
     private TripData mAdaper;
@@ -61,6 +62,8 @@ public class YourTrips extends Fragment {
         trip_name = rootView.findViewById(R.id.tour_name);
         trip_members = rootView.findViewById(R.id.trip_total_member);
         trip_expense = rootView.findViewById(R.id.trip_expense_per_head);
+        date_txt = rootView.findViewById(R.id.tour_date_txt);
+        avg_txt = rootView.findViewById(R.id.ic_expense_per_head);
 
 
         mAdaper = new TripData(tripList, getContext());

@@ -85,6 +85,7 @@ public class MemberData extends RecyclerView.Adapter<MemberData.MyViewHolder> {
             memberPhone = (MaterialEditText) view.findViewById(R.id.model_member_phone);
             deleteMember = (ImageView) view.findViewById(R.id.delete_model);
 
+
         }
     }
 
